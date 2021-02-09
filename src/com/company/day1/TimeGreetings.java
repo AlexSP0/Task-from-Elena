@@ -27,10 +27,10 @@ import java.util.Date;
     //Получает текущее время, если flag = false, то время системное
     //если flag = true, то время из инета по адресу http://worldtimeapi.org/api/Etc/GMT+4
     public void updateTime() throws IOException, ParseException {
-        currentDate = Calendar.getInstance();
         if(!isGetTimeFromInet) {
             currentDate = Calendar.getInstance(); // получаем текущую дату из системы
         } else { //получаем текущую дату из инета
+            currentDate = Calendar.getInstance();
             String url = "http://worldtimeapi.org/api/Etc/GMT+4"; //откуда берем дату и время
             HttpURLConnection myConnection = (HttpURLConnection) new URL(url).openConnection();
             myConnection.setRequestMethod("GET");
