@@ -1,10 +1,8 @@
 package com.company;
 
-import com.company.day2.TextTransform;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +17,7 @@ public class Main {
         //День третий, задача №2
         String str2 = "Ну что ж я, я найти решения правильного не смогу ж? Смогу ж конечно, я ж старательный все ж таки.";
         getStopWordsInJson(str2,3);
+        System.out.println(getStopWordsInJson(str2,2).toJSONString());
 
     }
     public static JSONObject getStopWordsInJson(String str, int frequency) {
@@ -32,13 +31,13 @@ public class Main {
     }
     public static HashMap<String, Integer> getWordFrequency(String str) { //Получаем в hashmap частоту слов, где ключ - слово, значение - количество вхождений типа Integer
         HashMap<String, Integer> map = new HashMap<>();
-        String[] buff = getWords(str.split(" "), "[!?;,. ]");
+        String[] buff = getWords(str.split(" "), "[!?;,.: ]");
         for (int i = 0; i < buff.length; i++) {
-            buff[i].toLowerCase();
-            if(map.containsKey(buff[i])){ //такой ключ
-                map.put(buff[i], map.get(buff[i])+1);
+            String tmp = buff[i].toLowerCase();
+            if(map.containsKey(tmp)){ //такой ключ
+                map.put(tmp, map.get(tmp)+1);
             } else {
-                map.put(buff[i], 1);
+                map.put(tmp, 1);
             }
         }
         return map;
@@ -64,6 +63,6 @@ public class Main {
                 }
             }
         }
-        return list.toArray(list.toArray(new String[0]));
+        return list.toArray(new String[0]);
     }
 }
